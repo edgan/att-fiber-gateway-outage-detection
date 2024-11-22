@@ -1,4 +1,5 @@
 # Proof
+These are examples of tcpdump output showing the different forms of interception.
 
 ## DNS examples
 ```
