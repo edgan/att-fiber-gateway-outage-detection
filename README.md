@@ -61,9 +61,6 @@ scripts/builds.sh
 See the `.go_builds` file for the list of supported combinations of operating
 systems and architectures.
 
-## Return codes
-The program returns a code of `0` normally and `1` during an outage.
-
 ## Story
 I have been experiencing intermittent outages with my AT&T Fiber. After having
 AT&T upgrade my gateway to firmware version `6.30.5` it has been more stable.
