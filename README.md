@@ -12,7 +12,7 @@ because it has to be booted to return DNS queries.
 By default the AT&T Fiber gateway intercepts A record DNS queries during an
 outage. It returns the ipv4 address of the gateway as the answer. So if the ipv4
 address returned matches the ipv4 address of the gateway an outage has been
-detected.
+detected. By default it loops to keep detecting outages.
 
 Example:
 ```
@@ -33,9 +33,11 @@ Usage of ./att-fiber-gateway-outage-detection:
   -dnsserver string
         The DNS server's IPv4 address to use (default "8.8.8.8")
   -gateway string
-        The gateway IPv4 address to compare against (default "192.168.1.254")
+        The gateway's IPv4 address to compare against (default "192.168.1.254")
   -hostname string
         The hostname to look up (default "google.com")
+  -noloop
+        Disable the loop and run the check only once (default: false)
   -sleep int
         The time in seconds to sleep between each check (default 10)
 ```

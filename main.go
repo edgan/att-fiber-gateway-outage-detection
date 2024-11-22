@@ -3,17 +3,18 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/miekg/dns"
 )
 
 func main() {
-	// Define flags with default values
-	debug := flag.Bool("debug", false, "Enable debug mode to log all results (default false)")
+	debug := flag.Bool("debug", false, "Enable debug mode to log all results (default: false)")
 	dnsserver := flag.String("dnsserver", "8.8.8.8", "The DNS server's IPv4 address to use")
-	gateway := flag.String("gateway", "192.168.1.254", "The gateway IPv4 address to compare against")
+	gateway := flag.String("gateway", "192.168.1.254", "The gateway IPv4 address to compare against)")
 	hostname := flag.String("hostname", "google.com", "The hostname to look up")
+	noloop := flag.Bool("noloop", false, "Disable the loop and run the check only once (default: false)")
 	sleep := flag.Int("sleep", 10, "The time in seconds to sleep between each check")
 
 	// Parse flags
@@ -33,11 +34,15 @@ func main() {
 			logWithTimestamp(fmt.Sprintf("Error performing DNS lookup: %v", err))
 		} else {
 			// Process the results
-			if response.Rcode != dns.RcodeSuccess {
-				logWithTimestamp(fmt.Sprintf("DNS query failed with Rcode: %d", response.Rcode))
-			} else {
-				processDNSResponse(response, *gateway, *debug)
+			outageDetected := processDNSResponse(response, *gateway, *debug)
+			if outageDetected && *noloop {
+				os.Exit(1) // Exit with return code 1 only if noloop is set
 			}
+		}
+
+		// Exit if noloop is set
+		if *noloop {
+			break
 		}
 
 		// Adjust sleep duration to ensure consistent intervals
@@ -49,8 +54,7 @@ func main() {
 	}
 }
 
-// processDNSResponse handles the processing of the DNS response
-func processDNSResponse(response *dns.Msg, gateway string, debug bool) {
+func processDNSResponse(response *dns.Msg, gateway string, debug bool) bool {
 	found := false
 	for _, answer := range response.Answer {
 		if aRecord, ok := answer.(*dns.A); ok {
@@ -58,6 +62,7 @@ func processDNSResponse(response *dns.Msg, gateway string, debug bool) {
 			ip := aRecord.A.String()
 			if ip == gateway {
 				logWithTimestamp(fmt.Sprintf("Outage detected: %s", ip))
+				return true
 			} else if debug {
 				logWithTimestamp(fmt.Sprintf("No outage detected: %s", ip))
 			}
@@ -67,9 +72,9 @@ func processDNSResponse(response *dns.Msg, gateway string, debug bool) {
 	if !found {
 		logWithTimestamp("No A records found.")
 	}
+	return false
 }
 
-// logWithTimestamp prints a message prefixed with the current timestamp
 func logWithTimestamp(message string) {
 	timestamp := time.Now().Format("2006-01-02 15:04:05")
 	fmt.Printf("[%s] %s\n", timestamp, message)
