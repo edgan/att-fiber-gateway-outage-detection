@@ -29,7 +29,7 @@ Address: 192.168.1.254
 ```
 Usage of ./att-fiber-gateway-outage-detection:
   -debug
-        Enable debug mode to log all results (default: false)
+        Enable debug mode to log all results (default false)
   -dnsserver string
         The DNS server's IPv4 address to use (default "8.8.8.8")
   -gateway string
@@ -37,7 +37,7 @@ Usage of ./att-fiber-gateway-outage-detection:
   -hostname string
         The hostname to look up (default "google.com")
   -noloop
-        Disable the loop and run the check only once (default: false)
+        Disable the loop and run the check only once (default false)
   -sleep int
         The time in seconds to sleep between each check (default 10)
 ```

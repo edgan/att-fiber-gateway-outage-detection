@@ -10,11 +10,11 @@ import (
 )
 
 func main() {
-	debug := flag.Bool("debug", false, "Enable debug mode to log all results (default: false)")
+	debug := flag.Bool("debug", false, "Enable debug mode to log all results (default false)")
 	dnsserver := flag.String("dnsserver", "8.8.8.8", "The DNS server's IPv4 address to use")
 	gateway := flag.String("gateway", "192.168.1.254", "The gateway IPv4 address to compare against)")
 	hostname := flag.String("hostname", "google.com", "The hostname to look up")
-	noloop := flag.Bool("noloop", false, "Disable the loop and run the check only once (default: false)")
+	noloop := flag.Bool("noloop", false, "Disable the loop and run the check only once (default false)")
 	sleep := flag.Int("sleep", 10, "The time in seconds to sleep between each check")
 
 	// Parse flags
