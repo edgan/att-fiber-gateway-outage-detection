@@ -17,23 +17,27 @@ detected.
 Example:
 ```
 nslookup google.com 8.8.8.8
-Server:		8.8.8.8
-Address:	8.8.8.8#53
+Server:     8.8.8.8
+Address:    8.8.8.8#53
 
 Non-authoritative answer:
-Name:	google.com
+Name:    google.com
 Address: 192.168.1.254
 ```
 
 ## Usage
 ```
 Usage of ./att-fiber-gateway-outage-detection:
+  -debug
+        Enable debug mode to log all results (default: false)
   -dnsserver string
-    	The DNS server ipv4 address to use (default: 8.8.8.8) (default "8.8.8.8")
+        The DNS server's IPv4 address to use (default "8.8.8.8")
   -gateway string
-    	The gateway ipv4 address to compare against (default: 192.168.1.254) (default "192.168.1.254")
+        The gateway IPv4 address to compare against (default "192.168.1.254")
   -hostname string
-    	The hostname to look up (default: google.com) (default "google.com")
+        The hostname to look up (default "google.com")
+  -sleep int
+        The time in seconds to sleep between each check (default 10)
 ```
 
 ## Example of usage
@@ -42,8 +46,22 @@ Usage of ./att-fiber-gateway-outage-detection:
 ./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1
 ./att-fiber-gateway-outage-detection -gateway 192.168.1.1
 ./att-fiber-gateway-outage-detection -hostname facebook.com
+./att-fiber-gateway-outage-detection -sleep 20
+./att-fiber-gateway-outage-detection -debug
 ./att-fiber-gateway-outage-detection -dnsserver 8.8.4.4 -gateway 192.168.10.254
 ./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1 -gateway 192.168.100.1 -hostname apple.com
+```
+
+## Example output
+In case of an outage:
+```
+[2024-11-21 18:55:23] Outage detected: 192.168.1.254
+```
+
+Debug mode:
+```
+[2024-11-21 18:55:30] No outage detected: 172.217.14.78
+[2024-11-21 18:55:40] No outage detected: 172.217.14.78
 ```
 
 ## Compiling

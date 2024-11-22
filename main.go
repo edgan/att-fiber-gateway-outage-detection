@@ -10,15 +10,18 @@ import (
 
 func main() {
 	// Define flags with default values
-	hostname := flag.String("hostname", "google.com", "The hostname to look up (default: google.com)")
-	dnsserver := flag.String("dnsserver", "8.8.8.8", "The DNS server's IPv4 address to use (default: 8.8.8.8)")
-	gateway := flag.String("gateway", "192.168.1.254", "The gateway's IPv4 address to compare against (default: 192.168.1.254)")
-	sleep := flag.Int("sleep", 10, "The time in seconds to sleep between each check (default: 10)")
+	debug := flag.Bool("debug", false, "Enable debug mode to log all results (default false)")
+	dnsserver := flag.String("dnsserver", "8.8.8.8", "The DNS server's IPv4 address to use")
+	gateway := flag.String("gateway", "192.168.1.254", "The gateway IPv4 address to compare against")
+	hostname := flag.String("hostname", "google.com", "The hostname to look up")
+	sleep := flag.Int("sleep", 10, "The time in seconds to sleep between each check")
 
 	// Parse flags
 	flag.Parse()
 
 	for {
+		start := time.Now() // Track the start time of the iteration
+
 		// Prepare the DNS query
 		client := new(dns.Client)
 		message := new(dns.Msg)
@@ -33,17 +36,21 @@ func main() {
 			if response.Rcode != dns.RcodeSuccess {
 				logWithTimestamp(fmt.Sprintf("DNS query failed with Rcode: %d", response.Rcode))
 			} else {
-				processDNSResponse(response, *gateway)
+				processDNSResponse(response, *gateway, *debug)
 			}
 		}
 
-		// Sleep for the specified duration
-		time.Sleep(time.Duration(*sleep) * time.Second)
+		// Adjust sleep duration to ensure consistent intervals
+		elapsed := time.Since(start)
+		sleepDuration := time.Duration(*sleep)*time.Second - elapsed
+		if sleepDuration > 0 {
+			time.Sleep(sleepDuration)
+		}
 	}
 }
 
 // processDNSResponse handles the processing of the DNS response
-func processDNSResponse(response *dns.Msg, gateway string) {
+func processDNSResponse(response *dns.Msg, gateway string, debug bool) {
 	found := false
 	for _, answer := range response.Answer {
 		if aRecord, ok := answer.(*dns.A); ok {
@@ -51,7 +58,7 @@ func processDNSResponse(response *dns.Msg, gateway string) {
 			ip := aRecord.A.String()
 			if ip == gateway {
 				logWithTimestamp(fmt.Sprintf("Outage detected: %s", ip))
-			} else {
+			} else if debug {
 				logWithTimestamp(fmt.Sprintf("No outage detected: %s", ip))
 			}
 		}
