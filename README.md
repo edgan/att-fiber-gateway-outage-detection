@@ -45,13 +45,24 @@ Usage of ./att-fiber-gateway-outage-detection:
 ## Example of usage
 ```
 ./att-fiber-gateway-outage-detection
+./att-fiber-gateway-outage-detection -debug
+./att-fiber-gateway-outage-detection -debug -noloop
 ./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1
 ./att-fiber-gateway-outage-detection -gateway 192.168.1.1
 ./att-fiber-gateway-outage-detection -hostname facebook.com
+./att-fiber-gateway-outage-detection -noloop
 ./att-fiber-gateway-outage-detection -sleep 20
-./att-fiber-gateway-outage-detection -debug
 ./att-fiber-gateway-outage-detection -dnsserver 8.8.4.4 -gateway 192.168.10.254
-./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1 -gateway 192.168.100.1 -hostname apple.com
+./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1 -hostname apple.com
+
+```
+
+You can test the behavior and output by setting the gateway flag to the ipv4 of the DNS record used.
+
+Testing:
+```
+./att-fiber-gateway-outage-detection -gateway 172.217.14.78
+./att-fiber-gateway-outage-detection -gateway 172.217.14.78 -debug
 ```
 
 ## Example output
