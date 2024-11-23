@@ -30,9 +30,7 @@ func main() {
 
 		// Perform the DNS query
 		response, _, err := client.Exchange(message, *dnsserver+":53")
-		if err != nil {
-			logWithTimestamp(fmt.Sprintf("Error performing DNS lookup: %v", err))
-		} else {
+		if err == nil {
 			// Process the results
 			outageDetected := processDNSResponse(response, *gateway, *debug)
 			if outageDetected && *noloop {
