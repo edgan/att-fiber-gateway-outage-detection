@@ -129,7 +129,7 @@ If you run `att-fiber-gateway-outage-detection` on more than one system you can
 see if any of them saw an outage.
 
 ### Dashboards
-In `datadog/dashboards` there are `json` files broken out by `model`, and
+In [datadog/dashboards/](datadog/dashboards) there are `json` files broken out by `model`, and
 `multi` and `single`.
 The `multi` version lets you specify different hostnames
 for different hosts running `att-fiber-gateway-outage-detection`. The advantage
@@ -150,7 +150,7 @@ BGW320-505-single.json
 ```
 
 #### Monitor
-In `datadog/monitors` there is are example `json` files. They have an example
+In [datadog/monitors/](datadog/monitors) there is are example `json` files. They have an example
 `monitor` that takes the metrics and alerts if the sum over five minutes is
 greater than zero.
 
