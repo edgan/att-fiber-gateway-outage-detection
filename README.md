@@ -19,8 +19,8 @@ because it has to be booted to return DNS queries.
 
 ## Supported hardware
 * [BGW320-505 gateway](https://help.sonic.com/hc/en-us/articles/1500000066642-BGW320)
-* BGW320-500 gateway, it has been reported to work
-* BGW210-700 gateway, will likely work, but untested
+* BGW320-500 gateway, expected to work, but untested 
+* BGW210-700 gateway, expected to work, but untested
 
 ## How it works
 By default the AT&T Fiber gateway intercepts A record DNS queries during an
