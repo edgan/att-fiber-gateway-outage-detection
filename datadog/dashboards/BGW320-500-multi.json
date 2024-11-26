@@ -37,8 +37,8 @@
               },
               {
                 "style": {
-                  "palette": "green",
-                  "palette_index": 6
+                  "palette": "orange",
+                  "palette_index": 7
                 },
                 "formula": "query3"
               }
@@ -64,7 +64,7 @@
             "style": {
               "palette": "dog_classic",
               "line_type": "solid",
-              "line_width": "normal"
+              "line_width": "thick"
             },
             "display_type": "line"
           }

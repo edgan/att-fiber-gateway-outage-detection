@@ -41,7 +41,7 @@
             "style": {
               "palette": "dog_classic",
               "line_type": "solid",
-              "line_width": "normal"
+              "line_width": "thick"
             },
             "display_type": "line"
           }
