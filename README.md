@@ -9,6 +9,9 @@ devices behind a AT&T Fiber gateway.
 * Detects outages
 * Can generate and report outage metric to
 [statsd](https://github.com/statsd/statsd)([Datadog](https://www.datadoghq.com/))
+* Custom [Datadog](https://www.datadoghq.com/) dashboards using the metric
+* Custom [Datadog](https://www.datadoghq.com/) monitors using the metric for
+alerting
 
 ## Note
 This is intended to detect outages where the AT&T Fiber gateway does not reboot,
