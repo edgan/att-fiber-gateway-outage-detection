@@ -1,0 +1,21 @@
+{
+	"id": 159079364,
+	"name": "AT&T Fiber outage",
+	"type": "query alert",
+	"query": "sum(last_5m):avg:bgw210700.outage{*} > 0",
+	"message": "@pagerduty-Home",
+	"tags": [],
+	"options": {
+		"thresholds": {
+			"critical": 0
+		},
+		"notify_audit": false,
+		"on_missing_data": "default",
+		"include_tags": false,
+		"new_host_delay": 300
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

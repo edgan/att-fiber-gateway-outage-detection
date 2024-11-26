@@ -1,0 +1,85 @@
+{
+  "title": "BGW320-500 outages",
+  "description": null,
+  "widgets": [
+    {
+      "id": 2684251382800097,
+      "definition": {
+        "title": "",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_layout": "auto",
+        "legend_columns": [
+          "avg",
+          "min",
+          "max",
+          "value",
+          "sum"
+        ],
+        "type": "timeseries",
+        "requests": [
+          {
+            "formulas": [
+              {
+                "style": {
+                  "palette": "purple",
+                  "palette_index": 6
+                },
+                "formula": "query1"
+              },
+              {
+                "style": {
+                  "palette": "warm",
+                  "palette_index": 6
+                },
+                "formula": "query2"
+              },
+              {
+                "style": {
+                  "palette": "green",
+                  "palette_index": 6
+                },
+                "formula": "query3"
+              }
+            ],
+            "queries": [
+              {
+                "name": "query1",
+                "data_source": "metrics",
+                "query": "avg:bgw320500.outage{host:host1.example.com}"
+              },
+              {
+                "name": "query2",
+                "data_source": "metrics",
+                "query": "avg:bgw320500.outage{host:host2.example.com}"
+              },
+              {
+                "name": "query3",
+                "data_source": "metrics",
+                "query": "avg:bgw320500.outage{host:host3.example.com}"
+              }
+            ],
+            "response_format": "timeseries",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ]
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 4,
+        "height": 2
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "ordered",
+  "notify_list": [],
+  "reflow_type": "fixed"
+}
