@@ -197,3 +197,6 @@ This method is much simpler, and should always work.
 ## Proof
 [Here](PROOF.md) is a link to another file with examples of the output from
 tcpdump showing the interception during an outage.
+
+## Related project
+[att-fiber-gateway-info](https://github.com/edgan/att-fiber-gateway-info/)
