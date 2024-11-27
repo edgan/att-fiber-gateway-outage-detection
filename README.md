@@ -42,8 +42,6 @@ Address: 192.168.1.254
 ## Documentation
 [Here](docs/) is the documentation.
 
-You can test the behavior and output by setting the gateway flag to the ipv4 of the DNS record used.
-
 ## Story
 I have been experiencing intermittent outages with my AT&T Fiber. After having
 AT&T upgrade my gateway to firmware version `6.30.5` it has been more stable.
