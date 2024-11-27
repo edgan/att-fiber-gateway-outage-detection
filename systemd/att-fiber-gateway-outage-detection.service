@@ -1,0 +1,15 @@
+[Unit]
+Description=A service to detect Internet outages of a AT&T Fiber gateway. 
+Documentation=https://github.com/edgan/att-fiber-gateway-outage-detection/blob/main/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/att-fiber-gateway-outage-detection -datadog
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
