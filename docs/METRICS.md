@@ -23,8 +23,11 @@ default value is `0.0`. When it detects an outage it returns `1.0`.
 
 If you run `att-fiber-gateway-outage-detection` on more than one system you can
 see if any of them saw an outage.
+### Running as a service
+#### Docker
+[Here](/Dockerfile) is a Dockerfile for running this in a Linux container
 
-### Systemd
+#### Systemd
 [Here](/systemd/att-fiber-gateway-outage-detection.service) is a tested systemd service file
 for running this as a daemon on a Linux system as root.
 
