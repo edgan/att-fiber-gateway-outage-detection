@@ -39,7 +39,7 @@ func giveMetricsToDatadogStatsd(debug bool, metrics []string, model string, stat
 
 	for key, value := range retrievedFloatMetrics {
 		if debug {
-			fmt.Println(key, value)
+			logWithTimestamp("Metric sent: " + key + "=" + strconv.FormatFloat(value, 'f', -1, 64))
 		}
 
 		err = client.Gauge(key, value, []string{"gateway:" + model}, 1)

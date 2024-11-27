@@ -24,8 +24,11 @@ func main() {
 	// Parse flags
 	flag.Parse()
 
+	log := true
+
 	if *datadog {
 		*metric = true
+		log = false
 	}
 
 	for {
@@ -40,7 +43,7 @@ func main() {
 		response, _, err := client.Exchange(message, *dnsserver+":53")
 		if err == nil {
 			// Process the results
-			outageDetected := processDNSResponse(response, *datadog, *debug, *gateway, *metric, *model, *statsdipport)
+			outageDetected := processDNSResponse(response, *datadog, *debug, *gateway, log, *metric, *model, *statsdipport)
 			if outageDetected && *noloop {
 				os.Exit(1) // Exit with return code 1 only if noloop is set
 			}
@@ -60,7 +63,7 @@ func main() {
 	}
 }
 
-func processDNSResponse(response *dns.Msg, datadog bool, debug bool, gateway string, metric bool, model string, statsdipport string) bool {
+func processDNSResponse(response *dns.Msg, datadog bool, debug bool, gateway string, log bool, metric bool, model string, statsdipport string) bool {
 	found := false
 
 	metrics := []string{}
@@ -75,14 +78,15 @@ func processDNSResponse(response *dns.Msg, datadog bool, debug bool, gateway str
 			found = true
 			ip := aRecord.A.String()
 			if ip == gateway {
-				outageMetric = "1.0"
+				outageMetricValue = "1.0"
 				outageMetric = outageMetricName + "=" + outageMetricValue
 
 				metrics = append(metrics, outageMetric)
 
 				if datadog {
 					giveMetricsToDatadogStatsd(debug, metrics, model, statsdipport)
-				} else {
+				}
+				if debug || log {
 					logWithTimestamp(fmt.Sprintf("Outage detected: %s", ip))
 				}
 
@@ -104,9 +108,4 @@ func processDNSResponse(response *dns.Msg, datadog bool, debug bool, gateway str
 		logWithTimestamp("No A records found.")
 	}
 	return false
-}
-
-func logWithTimestamp(message string) {
-	timestamp := time.Now().Format("2006-01-02 15:04:05")
-	fmt.Printf("[%s] %s\n", timestamp, message)
 }
