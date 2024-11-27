@@ -58,7 +58,7 @@ intercepting web traffic. This worked, but was more error prone and complex.
 This method is much simpler, and should always work.
 
 ## Proof
-[Here](PROOF.md) is a link to another file with examples of the output from
+[Here](docs/PROOF.md) is a link to another file with examples of the output from
 tcpdump showing the interception during an outage.
 
 ## Related project
