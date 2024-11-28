@@ -12,8 +12,10 @@ devices behind a AT&T Fiber gateway.
 * Custom [Datadog](https://www.datadoghq.com/) dashboards using the metric
 * Custom [Datadog](https://www.datadoghq.com/) monitors using the metric for
 alerting
-* Can be run as a daemon via
-[docker](https://en.wikipedia.org/wiki/Docker_(software)) or
+* Can be run as a daemon in
+[kubernetes](https://en.wikipedia.org/wiki/Kubernetes) via
+[helm](https://helm.sh/),
+[docker](https://en.wikipedia.org/wiki/Docker_(software)), or
 [systemd](https://en.wikipedia.org/wiki/Systemd)
 
 ## Note
