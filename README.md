@@ -12,7 +12,9 @@ devices behind a AT&T Fiber gateway.
 * Custom [Datadog](https://www.datadoghq.com/) dashboards using the metric
 * Custom [Datadog](https://www.datadoghq.com/) monitors using the metric for
 alerting
-* Can be run as a daemon via docker or systemd
+* Can be run as a daemon via
+[docker](https://en.wikipedia.org/wiki/Docker_(software)) or
+[systemd](https://en.wikipedia.org/wiki/Systemd)
 
 ## Note
 This is intended to detect outages where the AT&T Fiber gateway does not reboot,
