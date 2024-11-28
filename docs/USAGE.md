@@ -5,12 +5,12 @@ Usage of ./att-fiber-gateway-outage-detection:
         Send metric data to datadog (default false)
   -debug
         Enable debug mode to log all results (default false)
+  -dnshost string
+        The dnshost to look up (default "google.com")
   -dnsserver string
         The DNS server's IPv4 address to use (default "8.8.8.8")
   -gateway string
         The gateway IPv4 address to compare against) (default "192.168.1.254")
-  -hostname string
-        The hostname to look up (default "google.com")
   -metric
         Output as a metric instead of as a message (default false)
   -model string
@@ -30,11 +30,11 @@ Usage of ./att-fiber-gateway-outage-detection:
 ./att-fiber-gateway-outage-detection -debug -noloop
 ./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1
 ./att-fiber-gateway-outage-detection -gateway 192.168.1.1
-./att-fiber-gateway-outage-detection -hostname facebook.com
+./att-fiber-gateway-outage-detection -dnshost facebook.com
 ./att-fiber-gateway-outage-detection -noloop
 ./att-fiber-gateway-outage-detection -sleep 20
 ./att-fiber-gateway-outage-detection -dnsserver 8.8.4.4 -gateway 192.168.10.254
-./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1 -hostname apple.com
+./att-fiber-gateway-outage-detection -dnsserver 1.1.1.1 -dnshost apple.com
 ./att-fiber-gateway-outage-detection -metric
 ./att-fiber-gateway-outage-detection -metric -model bgw320500
 ./att-fiber-gateway-outage-detection -datadog

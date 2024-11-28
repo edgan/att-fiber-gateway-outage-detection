@@ -12,9 +12,9 @@ import (
 func main() {
         datadog := flag.Bool("datadog", false, "Send metric data to datadog (default false)")
 	debug := flag.Bool("debug", false, "Enable debug mode to log all results (default false)")
+	dnshost := flag.String("dnshost", "google.com", "The hostname to look up")
 	dnsserver := flag.String("dnsserver", "8.8.8.8", "The DNS server's IPv4 address to use")
 	gateway := flag.String("gateway", "192.168.1.254", "The gateway IPv4 address to compare against)")
-	hostname := flag.String("hostname", "google.com", "The hostname to look up")
 	metric := flag.Bool("metric", false, "Output as a metric instead of as a message (default false)")
 	model := flag.String("model", "bgw320505", "The model name of the gateway")
 	noloop := flag.Bool("noloop", false, "Disable the loop and run the check only once (default false)")
@@ -37,7 +37,7 @@ func main() {
 		// Prepare the DNS query
 		client := new(dns.Client)
 		message := new(dns.Msg)
-		message.SetQuestion(dns.Fqdn(*hostname), dns.TypeA)
+		message.SetQuestion(dns.Fqdn(*dnshost), dns.TypeA)
 
 		// Perform the DNS query
 		response, _, err := client.Exchange(message, *dnsserver+":53")
