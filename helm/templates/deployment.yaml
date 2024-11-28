@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+        command: ["att-fiber-gateway-outage-detection.sh"]
+        env:
+        - name: DNSHOST
+          value: "{{ .Values.flags.dnshost }}"
+        - name: DNSSERVER
+          value: "{{ .Values.flags.dnsserver }}"
+        - name: GATEWAY
+          value: "{{ .Values.flags.gateway }}"
+        - name: MODEL
+          value: "{{ .Values.flags.model }}"
+        - name: SLEEP
+          value: "{{ .Values.flags.sleep }}"
+        - name: STATSDIPPORT
+          value: "{{ .Values.flags.statsdipport }}"

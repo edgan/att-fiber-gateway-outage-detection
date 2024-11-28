@@ -1,0 +1,5 @@
+apiVersion: v2
+name: att-fiber-gateway-outage-detection
+description: A Helm chart for deploying the att-fiber-gateway-outage-detection
+type: application
+version: 0.1.0

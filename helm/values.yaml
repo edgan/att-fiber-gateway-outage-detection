@@ -1,0 +1,11 @@
+flags:
+  dnshost: ""
+  dnsserver: ""
+  gateway: ""
+  model: ""
+  sleep: ""
+  statsdipport: ""
+
+image:
+  repository: edgan/att-fiber-gateway-outage-detection
+  tag: 1.0.6
