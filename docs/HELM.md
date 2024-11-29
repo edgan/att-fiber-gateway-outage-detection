@@ -21,9 +21,9 @@ of 192.168.1.254
 
 ## Usage
 ```
+helm repo add edgan https://github.com/edgan/charts/raw/refs/heads/main
 cd helm
-helm package .
-helm install att-fiber-gateway-outage-detection att-fiber-gateway-outage-detection-0.1.0.tgz -f values.yaml
+helm install att-fiber-gateway-outage-detection edgan/att-fiber-gateway-outage-detection -f values.yaml
 ```
 
 ## Checking on it
