@@ -19,8 +19,10 @@ alerting
 [systemd](https://en.wikipedia.org/wiki/Systemd)
 
 ## Note
-This is intended to detect outages where the AT&T Fiber gateway does not reboot,
-because it has to be booted to return DNS queries.
+It works most reliably on a device in the gateway's subnet, the default being
+192.168.1.0/24. This means when using passthrough you need a device outside
+the passthrough, and not the passthrough device. This was observed with time,
+and the exact cause is unknown.
 
 ## Supported hardware
 * [BGW320-505 gateway](https://help.sonic.com/hc/en-us/articles/1500000066642-BGW320)
