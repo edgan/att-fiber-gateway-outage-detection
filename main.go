@@ -1,3 +1,5 @@
+// att-fiber-gateway-outage-detection
+// A cross platform golang program to check for Internet outages via DNS for devices behind AT&T Fiber gateways.
 package main
 
 import (

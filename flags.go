@@ -38,7 +38,7 @@ func returnFlags(colorMode bool) (Flags, *bool) {
 	version := flag.Bool("version", false, "Show version")
 
 	flag.Usage = func() {
-		Usage(colorMode)
+		usage(colorMode)
 	}
 
 	// Parse flags
@@ -69,7 +69,7 @@ func returnFlags(colorMode bool) (Flags, *bool) {
 	return flags, version
 }
 
-func Usage(colorMode bool) {
+func usage(colorMode bool) {
 	// Define Sprintf functions based on colorMode
 	var blueSprintf, boldGreenSprintf, cyanSprintf, greenSprintf func(format string, a ...interface{}) string
 
